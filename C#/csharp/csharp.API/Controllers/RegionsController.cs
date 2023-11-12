@@ -2,6 +2,7 @@
 using csharp.API.Models.Domain;
 using csharp.API.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace csharp.API.Controllers
 {
@@ -19,10 +20,10 @@ namespace csharp.API.Controllers
 		// Get ALL REGIONS
 		// GET: https://localhost:portnumber/api/regions
 		[HttpGet]
-		public IActionResult GetAll()
+		public async Task<IActionResult> GetAll()
 		{
 			// Get Data From Database - Domain models
-			var regionsDomain = dbContext.Regions.ToList();
+			var regionsDomain = await dbContext.Regions.ToListAsync();
 
 			// Map Domain Models to DTOs
 			var regionsDto = new List<RegionDto>();
@@ -45,11 +46,11 @@ namespace csharp.API.Controllers
 		// GET: https://localhost:portnumber/api/regions/{id}
 		[HttpGet]
 		[Route("{id:Guid}")]
-		public IActionResult GetById([FromRoute] Guid id) 
+		public async Task<IActionResult> GetById([FromRoute] Guid id) 
 		{
 			// var region = dbContext.Regions.Find(id); // use in the primary colum
 			// Get Region Domain Model from Database
-			var regionDomain = dbContext.Regions.FirstOrDefault(x=> x.Id == id);
+			var regionDomain = await dbContext.Regions.FirstOrDefaultAsync(x=> x.Id == id);
 
 			if(regionDomain == null)
 			{
@@ -71,7 +72,7 @@ namespace csharp.API.Controllers
 		// POST to Create New Region
 		// Post: https://localhost:portnumber/api/regions
 		[HttpPost]
-		public IActionResult Create([FromBody] AddRegionRequestDto addRegionRequestDto)
+		public async Task<IActionResult> Create([FromBody] AddRegionRequestDto addRegionRequestDto)
 		{
 			// Map Or convert dto to domain model
 			var regionDomainModel = new Region
@@ -82,8 +83,8 @@ namespace csharp.API.Controllers
 			};
 
 			// Use Domain Model to Create Region
-			dbContext.Regions.Add(regionDomainModel);
-			dbContext.SaveChanges();
+			await dbContext.Regions.AddAsync(regionDomainModel);
+			await dbContext.SaveChangesAsync();
 
 			// Map Domain Model back to Dto
 			var regionDto = new RegionDto
@@ -101,9 +102,9 @@ namespace csharp.API.Controllers
 		// Put: https://localhost:portnumber/api/regions/{id}
 		[HttpPut]
 		[Route("{id:Guid}")]
-		public IActionResult Update([FromRoute] Guid id, [FromBody] UpdateRegionRequestDto updateRegionRequestDto)
+		public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateRegionRequestDto updateRegionRequestDto)
 		{
-			var regionDomainModel = dbContext.Regions.FirstOrDefault(x => x.Id == id);
+			var regionDomainModel = await dbContext.Regions.FirstOrDefaultAsync(x => x.Id == id);
 
 			if(regionDomainModel == null)
 			{
@@ -115,7 +116,7 @@ namespace csharp.API.Controllers
 			regionDomainModel.Name = updateRegionRequestDto.Name;
 			regionDomainModel.RegionImageUrl = updateRegionRequestDto.RegionImageUrl;
 
-			dbContext.SaveChanges();
+			await dbContext.SaveChangesAsync();
 
 			// Convert Domain Model to dto
 			var regionDto = new RegionDto
@@ -133,9 +134,9 @@ namespace csharp.API.Controllers
 		// Delete: https://localhost:portnumber/api/regions/{id}
 		[HttpDelete]
 		[Route("{id:Guid}")]
-		public IActionResult Delete([FromRoute] Guid id)
+		public async Task<IActionResult> Delete([FromRoute] Guid id)
 		{
-			var regionDomainModel = dbContext.Regions.FirstOrDefault(x => x.Id == id);
+			var regionDomainModel = await dbContext.Regions.FirstOrDefaultAsync(x => x.Id == id);
 
 			if (regionDomainModel == null)
 			{
@@ -144,7 +145,7 @@ namespace csharp.API.Controllers
 
 			// Delete region
 			dbContext.Regions.Remove(regionDomainModel);
-			dbContext.SaveChanges();
+			await dbContext.SaveChangesAsync();
 
 			// return deleted Region back
 			// map Domain model to DTO
