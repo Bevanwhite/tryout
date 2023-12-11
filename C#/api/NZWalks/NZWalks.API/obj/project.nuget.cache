@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "+n7fbOFq/9W789kUT2mrBBE5hlc/thG43BnAOeA+hVpp2jhcoQM0QQosh7zKCZu7JZJSUs9kK41hQwEeeVGQ7g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\CommercePromote\\Documents\\beva\\tryout\\C#\\api\\NZWalks\\NZWalks.API\\NZWalks.API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\CommercePromote\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.13\\microsoft.aspnetcore.openapi.7.0.13.nupkg.sha512",
+    "C:\\Users\\CommercePromote\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\CommercePromote\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
+    "C:\\Users\\CommercePromote\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\CommercePromote\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\CommercePromote\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\CommercePromote\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
