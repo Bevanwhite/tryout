@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "EWWjtTvcJQbF3DRoEOuIe767819y93cFeQwJ9BMAwrSQoSuHOjl2wAjQqXrl3TNZ5VoFBBcj3curIctQFegqlQ==",
+  "dgSpecHash": "0WYC506czX11Gj+IAKioG2ncxov9cB9TTvPlS/bhwHvbza/SF1tdnWVZP+1sCJjhni928S0tAxRybsv2i2eNVg==",
   "success": true,
   "projectFilePath": "C:\\Users\\CommercePromote\\Documents\\beva\\tryout\\C#\\api\\NZWalks\\NZWalks.API\\NZWalks.API.csproj",
   "expectedPackageFiles": [
@@ -45,6 +45,7 @@
     "C:\\Users\\CommercePromote\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\CommercePromote\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\CommercePromote\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\CommercePromote\\.nuget\\packages\\swashbuckle.aspnetcore.annotations\\6.5.0\\swashbuckle.aspnetcore.annotations.6.5.0.nupkg.sha512",
     "C:\\Users\\CommercePromote\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\CommercePromote\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
     "C:\\Users\\CommercePromote\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",

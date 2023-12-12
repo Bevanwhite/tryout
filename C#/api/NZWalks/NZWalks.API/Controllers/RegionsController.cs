@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NZWalks.API.Data;
+using NZWalks.API.Models.Domain;
 using NZWalks.API.Models.DTO;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace NZWalks.API.Controllers
 {
@@ -61,6 +63,9 @@ namespace NZWalks.API.Controllers
 		// Get: https://localhost:portnumber/api/regions/{id}
 		[HttpGet]
 		[Route("{id:Guid}")]
+		// documented Swagger documented
+		[SwaggerResponse(200, "Resource found", typeof(RegionDto))]
+		[SwaggerResponse(404, "Resource not found")]
 		public IActionResult GetById([FromRoute] Guid id)
 		{
 			// var region = dbContext.Regions.Find(id);
@@ -84,6 +89,99 @@ namespace NZWalks.API.Controllers
 			return Ok(regionDto);
 		}
 
+		// Post to Create New Region
+		// Post: https://localhost:portnumber/api/regions
+		[HttpPost]
+		// documented Swagger documented
+		[SwaggerResponse(201, "Resource created successfully", typeof(RegionDto))]
+		[SwaggerResponse(400, "One or more validation errors occurred.")]
+		public IActionResult Create([FromBody] AddRegionRequestDto addRegionRequestDto)
+		{
+			// Map or convert DTO to Domain Model
+			var regionDomainModel = new Region
+			{
+				Code = addRegionRequestDto.Code,
+				Name = addRegionRequestDto.Name,
+				RegionImageUrl = addRegionRequestDto.RegionImageUrl
+			};
 
+			// saving regionModel in the database
+			dbContext.Regions.Add(regionDomainModel);
+			dbContext.SaveChanges();
+
+			var regionDto = new RegionDto
+			{
+				Id = regionDomainModel.Id,
+				Code = regionDomainModel.Code,
+				Name = regionDomainModel.Name,
+				RegionImageUrl = regionDomainModel.RegionImageUrl
+			};
+
+			return CreatedAtAction(nameof(GetById), new { id = regionDto.Id }, regionDto);
+		}
+
+		// Update region
+		// Put: https://localhost:portnumber/api/regions/{id}
+		[HttpPut]
+		[Route("{id:Guid}")]
+		[SwaggerResponse(404, "Resource not found")]
+		[SwaggerResponse(200, "Resource found", typeof(RegionDto))]
+		public IActionResult Update([FromRoute] Guid id, [FromBody] UpdateRegionRequestDto updateRegionRequestDto)
+		{
+			var regionDomainModel = dbContext.Regions.FirstOrDefault(x => x.Id == id);
+
+			if (regionDomainModel == null)
+			{
+				return NotFound();
+			}
+
+			// Map DTO to Domain model
+			regionDomainModel.Code = updateRegionRequestDto.Code;
+			regionDomainModel.Name = updateRegionRequestDto.Name;
+			regionDomainModel.RegionImageUrl = updateRegionRequestDto.RegionImageUrl;
+
+			dbContext.SaveChanges();
+
+			// Convert Domain Model to DTO
+			var regionDto = new RegionDto
+			{
+				Id = regionDomainModel.Id,
+				Code = regionDomainModel.Code,
+				Name = updateRegionRequestDto.Name,
+				RegionImageUrl = updateRegionRequestDto.RegionImageUrl
+			};
+
+			return Ok(regionDto);
+		}
+
+		// Delete Region
+		// Delete: https://localhost:portnumber/api/regions/{id}
+		[HttpDelete]
+		[Route("{id:Guid}")]
+		[SwaggerResponse(404, "Resource not found")]
+		[SwaggerResponse(200, "Resource found", typeof(RegionDto))]
+		public IActionResult Delete([FromRoute] Guid id)
+		{
+			var regionDomainModel = dbContext.Regions.FirstOrDefault(x => x.Id == id);
+
+			if (regionDomainModel == null)
+			{
+				return NotFound();
+			}
+
+			// Delete the region
+			dbContext.Regions.Remove(regionDomainModel);
+			dbContext.SaveChanges();
+
+			var regionDto = new RegionDto
+			{
+				Id = regionDomainModel.Id,
+				Code = regionDomainModel.Code,
+				Name = regionDomainModel.Name,
+				RegionImageUrl = regionDomainModel.RegionImageUrl
+			};
+
+			return Ok(regionDto);
+		}
 	}
 }
