@@ -57,3 +57,19 @@ Advantages of DTOs
 	* performance
 	* security
 	* Versioning
+
+what is Async Programming?
+	* technique that enables your program to start a potentially long-running task and still be able 
+	  to be responsive to other events while that task runs, rather than having to wait until that task
+	  runs, rather than having to wait until that task has finished. 
+
+what is a Repository Pattern ?
+	* it is helping to data access layer seprate from the rest of the application
+	* provides interface without exposing implementation
+	* helps create abstraction
+
+what are the benefits
+	* Decoupling
+	* Consistency
+	* Performance
+	* Multiple data Sources(switching databases)
