@@ -73,3 +73,9 @@ what are the benefits
 	* Consistency
 	* Performance
 	* Multiple data Sources(switching databases)
+
+what is AutoMapper
+	* object-to-object mapping
+	* simplification
+	* Map between DTOs and Domain Models and vice versa
+	* quite powerful apart from  just simple object-to-object mapping
