@@ -79,3 +79,7 @@ what is AutoMapper
 	* simplification
 	* Map between DTOs and Domain Models and vice versa
 	* quite powerful apart from  just simple object-to-object mapping
+
+what are Navigation Properties?
+	* Allow to Navigate from one entity to another
+	* Walks Domain model will have Region Navigation Property
