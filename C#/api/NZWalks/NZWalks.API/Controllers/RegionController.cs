@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using NZWalks.API.CustomActionFilters;
 using NZWalks.API.Data;
 using NZWalks.API.Models.Domain;
 using NZWalks.API.Models.DTO;
@@ -10,13 +11,13 @@ namespace NZWalks.API.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class RegionsController : ControllerBase
+	public class RegionController : ControllerBase
 	{
 		private readonly NZWalksDbContext dbContext;
 		private readonly IRegionRepository regionRepository;
 		private readonly IMapper mapper;
 
-		public RegionsController(NZWalksDbContext dbContext, IRegionRepository regionRepository, IMapper mapper)
+		public RegionController(NZWalksDbContext dbContext, IRegionRepository regionRepository, IMapper mapper)
 		{
 			this.dbContext = dbContext;
 			this.regionRepository = regionRepository;
@@ -64,6 +65,7 @@ namespace NZWalks.API.Controllers
 		// documented Swagger documented
 		[SwaggerResponse(201, "Resource created successfully", typeof(RegionDto))]
 		[SwaggerResponse(400, "One or more validation errors occurred.")]
+		[ValidateModel]
 		public async Task<IActionResult> Create([FromBody] AddRegionRequestDto addRegionRequestDto)
 		{
 			// Map or convert DTO to Domain Model
@@ -83,10 +85,11 @@ namespace NZWalks.API.Controllers
 		[Route("{id:Guid}")]
 		[SwaggerResponse(404, "Resource not found")]
 		[SwaggerResponse(200, "Resource found", typeof(RegionDto))]
+		[ValidateModel]
 		public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateRegionRequestDto updateRegionRequestDto)
 		{
-			var regionDomainModel = mapper.Map<Region>(updateRegionRequestDto);
 
+			var regionDomainModel = mapper.Map<Region>(updateRegionRequestDto);
 
 			regionDomainModel = await regionRepository.UpdateAsync(id, regionDomainModel);
 

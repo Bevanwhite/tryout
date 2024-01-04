@@ -3446,7 +3446,8 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\CommercePromote\\.nuget\\packages\\": {}
+    "C:\\Users\\CommercePromote\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
@@ -3457,6 +3458,9 @@
       "packagesPath": "C:\\Users\\CommercePromote\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\CommercePromote\\Documents\\beva\\tryout\\C#\\api\\NZWalks\\NZWalks.API\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
         "C:\\Users\\CommercePromote\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
