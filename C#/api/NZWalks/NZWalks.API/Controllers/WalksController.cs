@@ -35,9 +35,9 @@ namespace NZWalks.API.Controllers
 		}
 
 		// Get Walks
-		// Get: https://localhost:portnumber/api/walks
+		// Get: https://localhost:portnumber/api/walks?filterOn=Name&filterQuery=Track
 		[HttpGet]
-		public async Task<IActionResult> GetAll()
+		public async Task<IActionResult> GetAll([FromQuery] string? filterOn, [FromQuery] string? filterQuery)
 		{
 			var walksDomainModel = await walkRepository.GetAllAsync();
 
